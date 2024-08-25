@@ -2,31 +2,31 @@
 pragma solidity ^0.8.0;
 
 contract Auction {
-    address public owner;
-    uint public highestBid;
-    address public highestBidder;
+    address public own;
+    uint public chbid;
+    address public topbidder;
 
     constructor() {
-        owner = msg.sender;
-        highestBid = 0;
+        own = msg.sender;
+        chbid = 0;
     }
 
-    function placeBid(uint _bid) public {
-        require(_bid > highestBid, "Bid must be higher than the current highest bid");
-        highestBid = _bid;
-        highestBidder = msg.sender;
+    function submitbid(uint _newBid) public {
+        require(_newBid > chbid, "Bid must be higher than the current highest bid");
+        chbid = _newBid;
+        topbidder = msg.sender;
     }
 
-    function withdraw() public {
-        require(msg.sender == owner, "Only the owner can withdraw the highest bid");
-        require(highestBid > 0, "No bids have been placed");
-        payable(owner).transfer(highestBid);
-        highestBid = 0;
+    function withdrawFunds() public {
+        require(msg.sender == own, "Only the owner can withdraw the highest bid");
+        require(chbid > 0, "No bids have been placed");
+        payable(own).transfer(chbid);
+        chbid = 0;
     }
 
-    function cancelAuction() public view {
-        require(msg.sender == owner, "Only the owner can cancel the auction");
-        assert(highestBid > 0);
+    function auctionabort() public view {
+        require(msg.sender == own, "Only the owner can cancel the auction");
+        assert(chbid > 0);
         revert("Auction cancelled");
     }
 }
