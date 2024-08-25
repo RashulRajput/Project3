@@ -50,8 +50,6 @@ This smart contract is ideal for simple auction scenarios where the highest bid 
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
----
-
 This README is designed to provide clear, concise information about your auction contract, with a bit of emoji flair to make it more engaging.
 ## 👨‍💻 Author
 
